@@ -4,7 +4,7 @@ ARG RUST="rust:1.90-alpine3.22"
 ARG GOLANG="golang:1.25-alpine3.22"
 
 FROM ${GOLANG} AS dnsproxy
-ENV DNSPROXY="0.76.1"
+ENV DNSPROXY="0.81.4"
 RUN wget https://github.com/AdguardTeam/dnsproxy/archive/v${DNSPROXY}.tar.gz -O- | tar xz
 WORKDIR ./dnsproxy-${DNSPROXY}/
 RUN go get
@@ -21,7 +21,7 @@ RUN mv main /tmp/overture
 
 FROM ${ALPINE} AS adguard-src
 RUN apk add git
-ENV ADGUARD="0.107.66"
+ENV ADGUARD="0.107.77"
 RUN git clone https://github.com/AdguardTeam/AdGuardHome.git -b v${ADGUARD} --depth=1
 
 FROM ${NODE} AS adguard-web
